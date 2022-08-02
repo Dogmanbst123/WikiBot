@@ -9,56 +9,7 @@ embedConstruction: function (item, message) {
     const urlthing = item.replace(regex,'_')
     const exampleEmbed = new EmbedBuilder()
 	.setColor('#f5f625')
-	.setTitle(item)
-	.setURL(`https://dungeonquestroblox.fandom.com/wiki/${urlthing}`)
 	.setDescription(`${message}`)
-    .setThumbnail('https://i.imgur.com/AfFp7pu.png')
-	.setTimestamp()
-	.setFooter({ text: 'DQ Wiki Bot',});
-    return exampleEmbed
-},
-embedConstructionWeapon: function (item, field1, field2, field3, field4, field5) {
-    const regex = / /gi
-    const urlthing = item.replace(regex,'_')
-    const exampleEmbed = new EmbedBuilder()
-	.setColor('#f5f625')
-	.setTitle(item)
-	.setURL(`https://dungeonquestroblox.fandom.com/wiki/${urlthing}`)
-    .addFields(
-		{ name: 'Common', value: `${field1}`, inline: true },
-		{ name: 'Uncommon', value: `${field2}`, inline: true },
-        { name: '\u200B', value: '\u200B' },
-        { name: 'Rare', value: `${field3}`, inline: true },
-		{ name: 'Epic', value: `${field4}`, inline: true },
-        { name: '\u200B', value: '\u200B' },
-        { name: 'All', value:`${field5}`, inline: true}
-	)
-    .setThumbnail('https://static.wikia.nocookie.net/dungeonquestroblox/images/e/e6/Site-logo.png/')
-	.setTimestamp()
-	.setFooter({ text: 'DQ Wiki Bot',});
-    return exampleEmbed
-},
-embedConstructionSpell: function (item, field1, field2, field3, field4, field5) {
-    const regex = / /gi
-    const lastWord = item.lastIndexOf(" ");
-    const set = item.substring(0, lastWord);
-    const urlthing = set.replace(regex,'_')
-    const exampleEmbed = new EmbedBuilder()
-	.setColor('#f5f625')
-	.setTitle(item)
-	.setURL(`https://dungeonquestroblox.fandom.com/wiki/${urlthing}_Set`)
-    .addFields(
-		{ name: 'Common', value: `${field1}`, inline: true },
-		{ name: 'Uncommon', value: `${field2}`, inline: true },
-        { name: '\u200B', value: '\u200B' },
-        { name: 'Rare', value: `${field3}`, inline: true },
-		{ name: 'Epic', value: `${field4}`, inline: true },
-        { name: '\u200B', value: '\u200B' },
-        { name: 'All', value:`${field5}`, inline: true}
-	)
-    .setThumbnail('https://static.wikia.nocookie.net/dungeonquestroblox/images/e/e6/Site-logo.png/')
-	.setTimestamp()
-	.setFooter({ text: 'DQ Wiki Bot',});
     return exampleEmbed
 },
 embedConstructionSimple: function (item, description) {

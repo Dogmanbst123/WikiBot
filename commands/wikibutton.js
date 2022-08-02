@@ -15,7 +15,7 @@ module.exports = {
 		let itemRaw = interaction.options.getString('item');
         let item = ats.capitalizeFirstLetter(itemRaw)
         if (!data.hasOwnProperty(`${item}`)){
-            item = ats.capitalizeFirstLetter((ats.autoCorrect(item)))
+            item = (ats.autoCorrect(item))
         }
         console.log(item)
 		if (data.hasOwnProperty(`${item}`)){
@@ -23,6 +23,7 @@ module.exports = {
                     if (dog.ultimate) {
                         let tier1;
                         if (dog.tierr.minDamage) {tier1 = `🔴 ${item} Stats:\n⚔️ Physical Power: ${dog.tierr.damage.toLocaleString()}\n☮️ Min Physical Power: ${dog.tierr.minDamage.toLocaleString()}\n🪄 Spell Power: ${dog.tierr.spellPower.toLocaleString()}\n⬆️ Upgrades: ${dog.tierr.maxUpgrades.toLocaleString()}\n⬇️ Min Upgrades: ${dog.tierr.minMaxUpgrades.toLocaleString()}\n🪙 Sell Price: ${(dog.sellPrice).toLocaleString()}\n✅ Level Req: ${(dog.levelReq).toLocaleString()}`}
+                        else {tier1 = tier1 = `🔴 ${item} Stats:\n⚔️ Physical Power: ${dog.tierr.damage.toLocaleString()}\n🪄 Spell Power: ${dog.tierr.spellPower.toLocaleString()}\n☮️ Min Spell Power: ${dog.tierr.minSpellPower.toLocaleString()}\n⬆️ Upgrades: ${dog.tierr.maxUpgrades.toLocaleString()}\n⬇️ Min Upgrades: ${dog.tierr.minMaxUpgrades.toLocaleString()}\n🪙 Sell Price: ${(dog.sellPrice).toLocaleString()}\n✅ Level Req: ${(dog.levelReq).toLocaleString()}`}
                         const itemEmbed = ats.embedConstructionSimple(item, tier1)
                         interaction.reply({content: `${item}`, embeds: [itemEmbed]});
                     }
