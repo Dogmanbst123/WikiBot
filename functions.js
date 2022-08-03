@@ -19,7 +19,7 @@ embedConstructionSimple: function (item, description) {
 	.setTitle(item)
 	.setURL(`https://dungeonquestroblox.fandom.com/wiki/${urlthing}`)
     .setDescription(`${description}`)
-    .setThumbnail (data.imagelink)
+    .setThumbnail (data[item].imagelink)
 	.setTimestamp()
 	.setFooter({ text: 'DQ Wiki Bot',});
     return exampleEmbed
