@@ -1,7 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const data = require('./data.json')
-const datawithlinks = require('./datawithlinks.json')
 const autocorrect = require('autocorrect')({words: Object.keys(data)});
 module.exports = {
 embedConstruction: function (item, message) {
@@ -20,7 +19,7 @@ embedConstructionSimple: function (item, description) {
 	.setTitle(item)
 	.setURL(`https://dungeonquestroblox.fandom.com/wiki/${urlthing}`)
     .setDescription(`${description}`)
-    .setThumbnail (datawithlinks[item].imagelink)
+    .setThumbnail (data.imagelink)
 	.setTimestamp()
 	.setFooter({ text: 'DQ Wiki Bot',});
     return exampleEmbed
@@ -43,7 +42,7 @@ embedConstructionArmor: function (item, description) {
 	.setTitle(item)
 	.setURL(`https://dungeonquestroblox.fandom.com/wiki/${urlthing}_Set`)
     .setDescription(`${description}`)
-    .setThumbnail (datawithlinks[item].imagelink)
+    .setThumbnail (data[item].imagelink)
 	.setTimestamp()
 	.setFooter({ text: 'DQ Wiki Bot',});
     return exampleEmbed
