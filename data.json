@@ -15480,7 +15480,7 @@
         "levelReq": 1,
         "sellPrice": 100,
         "tierr": {
-            "maxUpgrades": 1.7976931348623157e+308,
+            "maxUpgrades": 1.7976931348623157,
             "spellPower": 6,
             "minMaxUpgrades": 5,
             "minSpellPower": 6,
@@ -15498,7 +15498,7 @@
             "spellPower": 6,
             "minMaxUpgrades": 1,
             "minSpellPower": 6,
-            "damage": 1.7976931348623157e+308
+            "damage": 1.7976931348623157
         },
         "imagelink": "https://media.discordapp.net/attachments/645924664996266007/1004203777861107743/moyai_stick.png"
     }
