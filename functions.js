@@ -3,12 +3,11 @@ const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const data = require('./data.json')
 const autocorrect = require('autocorrect')({words: Object.keys(data)});
 module.exports = {
-embedConstruction: function (item, message) {
-    const regex = / /gi
-    const urlthing = item.replace(regex,'_')
+embedConstructionMessage: function (message) {
     const exampleEmbed = new EmbedBuilder()
-	.setColor('#f5f625')
-	.setDescription(`${message}`)
+	.setAuthor({ name: `${message.author.tag} from ${message.guild}`, iconURL: `${message.author.displayAvatarURL()}`})
+	.setDescription(`${message.content}`)
+    .setColor(Number(`${message.guild.id.substring(0,7)}`))
     return exampleEmbed
 },
 embedConstructionSimple: function (item, description) {
@@ -32,6 +31,13 @@ capitalizeFirstLetter: function (string){
    const item = words.join(" ");
    return item
 }, 
+toColor(num) {
+    num >>>= 0;
+    const b = num & 0xFF,
+        g = (num & 0xFF00) >>> 8,
+        r = (num & 0xFF0000) >>> 16 ;
+    return [r, g, b];
+},
 embedConstructionArmor: function (item, description) {
     const regex = / /gi
     const lastWord = item.lastIndexOf(" ");
