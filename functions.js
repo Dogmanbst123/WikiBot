@@ -4,11 +4,37 @@ const data = require('./data.json')
 const autocorrect = require('autocorrect')({words: Object.keys(data)});
 module.exports = {
 embedConstructionMessage: function (message) {
-    const exampleEmbed = new EmbedBuilder()
-	.setAuthor({ name: `${message.author.tag} from ${message.guild}`, iconURL: `${message.author.displayAvatarURL()}`})
-	.setDescription(`${message.content}`)
-    .setColor(Number(`${message.guild.id.substring(0,7)}`))
-    return exampleEmbed
+    if (message.attachments.size == 0 && message.stickers.size == 0) {
+        const exampleEmbed = new EmbedBuilder()
+        .setAuthor({ name: `${message.author.tag} from ${message.guild}`, iconURL: `${message.author.displayAvatarURL()}`})
+        .setDescription(`${message.content}`)
+        .setImage()
+        .setColor(Number(`${message.guild.id.substring(0,7)}`))
+        return exampleEmbed
+    }
+    else if (message.attachments.size >= 1) {
+        console.log(message.attachments.size)
+        let description = ' ';
+        if (message.content) {
+            description = message.content
+        }
+        const exampleEmbed = new EmbedBuilder()
+        .setAuthor({ name: `${message.author.tag} from ${message.guild}`, iconURL: `${message.author.displayAvatarURL()}`})
+        .setDescription(`${description}`)
+        .setImage(message.attachments.values().next().value.url)
+        .setColor(Number(`${message.guild.id.substring(0,7)}`))
+        return exampleEmbed
+    }
+    else if (message.stickers.size >= 1) {
+        description = " "
+        console.log(message.attachments.size)
+        const exampleEmbed = new EmbedBuilder()
+        .setAuthor({ name: `${message.author.tag} from ${message.guild}`, iconURL: `${message.author.displayAvatarURL()}`})
+        .setDescription(`${description}`)
+        .setImage(message.stickers.values().next().value.url)
+        .setColor(Number(`${message.guild.id.substring(0,7)}`))
+        return exampleEmbed
+    }
 },
 embedConstructionSimple: function (item, description) {
     const regex = / /gi
