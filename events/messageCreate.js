@@ -3,8 +3,8 @@ module.exports = {
 	name: 'messageCreate',
 	execute(message) {
 		if (message.author.bot) return;
-		if (message.channel.id == '1013242881105993808' || message.channel.id == '1013248540425867394' ) {
-			const listOfChannels = ['1013242881105993808', '1013248540425867394']
+		if (message.channel.id == '1013242881105993808' || message.channel.id == '1013248540425867394' || message.channel.id == '1013616672277544980') {
+			const listOfChannels = ['1013242881105993808', '1013248540425867394', '1013616672277544980']
 			listOfChannels.forEach(id => message.client.channels.cache.get(id).send({ embeds: [ats.embedConstructionMessage(message)] }))
 			message.delete().catch(console.error);
 		}
