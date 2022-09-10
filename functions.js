@@ -41,6 +41,7 @@ embedConstructionMessage: function (message) {
         .setDescription(`${description}`)
         .setImage(message.attachments.values().next().value.url)
         .setColor(Number(`${message.guild.id.substring(0,7)}`))
+        .setFooter({text: `User ID: ${message.author.id}`})
         return exampleEmbed
     }
     else if (message.stickers.size >= 1) {
@@ -51,6 +52,7 @@ embedConstructionMessage: function (message) {
         .setDescription(`${description}`)
         .setImage(message.stickers.values().next().value.url)
         .setColor(Number(`${message.guild.id.substring(0,7)}`))
+        .setFooter({text: `User ID: ${message.author.id}`})
         return exampleEmbed
     }
 },
