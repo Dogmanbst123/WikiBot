@@ -27,6 +27,7 @@ embedConstructionMessage: function (message) {
         .setDescription(`${message.content}`)
         .setImage()
         .setColor(Number(`${message.guild.id.substring(0,7)}`))
+        .setFooter({text: `User ID: ${message.author.id}`})
         return exampleEmbed
     }
     else if (message.attachments.size >= 1) {
