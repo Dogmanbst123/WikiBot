@@ -15,7 +15,8 @@ module.exports = {
             interaction.reply("you are not an interguild mod")
         }
         if (regex.test(userid)){   
-            let channel = await interaction.client.channels.cache.get('1028895304218595430')
+            let channel = await interaction.client.channels.cache.get('1018239456463032392')
+            console.log(channel)
             let message = await channel.messages.fetch('1028896111705997353')
             message.edit(message.content + " " + userid)
             interaction.reply("ok banned the sussy lil baka")
