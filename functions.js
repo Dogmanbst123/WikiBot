@@ -2,7 +2,7 @@ const { EmbedBuilder } = require('discord.js');
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const data = require('./data.json')
 const autocorrect = require('autocorrect')({words: Object.keys(data)});
-const badwords = ["heck", "nigger", "bitch", "cum", "dick", "d1ck", " ass ", "fuck", "b1tch", "asshat", "asshole", "shit", " ass", "sh1t"]
+const badwords = ["heck", "nigger", "bitch", "cum", "dick", "d1ck", " ass ", "fuck", "b1tch", "asshat", "asshole", "shit", " ass", "sh1t", "porn"]
 module.exports = {
 checkIfBadWord: function (message) {
     for (let i=0; i<badwords.length; i++) {

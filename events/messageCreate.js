@@ -14,7 +14,7 @@ module.exports = {
 			else {
 			const listOfChannels = ['1013242881105993808', '1001699449590009917', '1013248540425867394']
 			listOfChannels.forEach(id => message.client.channels.cache.get(id).send({ embeds: [ats.embedConstructionMessage(message)] }))
-			setTimeout(deleteMessage, 100)
+			setTimeout(deleteMessage, 200)
 			function deleteMessage () {
 				message.delete().catch(console.error)
 			}
