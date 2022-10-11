@@ -5,7 +5,7 @@ module.exports = {
 		if (message.author.bot) return;
 		if (message.channel.id == '1013242881105993808' || message.channel.id == '1013248540425867394' || message.channel.id == '1013616672277544980') {
 			let channel = await message.client.channels.cache.get('1018239456463032392')
-            let message2 = await channel.messages.fetch('1018239474498535565')
+            let message2 = await channel.messages.fetch('1028896111705997353')
 			let listOfBannedUsers = message2.content.split(" ")
 			if (ats.checkIfBanned(message.author.id, listOfBannedUsers)) return;
 			if (ats.checkIfBadWord(message.content)) {
