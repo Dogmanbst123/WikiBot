@@ -13,6 +13,7 @@ module.exports = {
         let mods = ['482685415019642880', '127956423790428160']
         if (!ats.checkIfBanned(interaction.member.id, mods)) {
             interaction.reply("you are not an interguild mod")
+            return;
         }
         if (regex.test(userid)){   
             let channel = await interaction.client.channels.cache.get('1018239456463032392')
