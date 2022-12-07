@@ -2,3 +2,4 @@ node_modules
 request.js
 config.json
 .env
+test.js
