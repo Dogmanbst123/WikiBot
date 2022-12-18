@@ -2,7 +2,7 @@ const { EmbedBuilder } = require('discord.js');
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const data = require('./data.json')
 const autocorrect = require('autocorrect')({words: Object.keys(data)});
-const badwords = ["heck", "nigger", "bitch", "cum", "dick", "d1ck", " ass ", "fuck", "b1tch", "asshat", "asshole", "shit", " ass", "sh1t", "porn"]
+const badwords = ["heck", "nigger", "bitch", "cum", "dick", "d1ck", " ass ", "fuck", "b1tch", "asshat", "asshole"]
 module.exports = {
 checkIfBadWord: function (message) {
     for (let i=0; i<badwords.length; i++) {
@@ -27,7 +27,6 @@ embedConstructionMessage: function (message) {
         .setDescription(`${message.content}`)
         .setImage()
         .setColor(Number(`${message.guild.id.substring(0,7)}`))
-        .setFooter({text: `User ID: ${message.author.id}`})
         return exampleEmbed
     }
     else if (message.attachments.size >= 1) {
@@ -41,7 +40,6 @@ embedConstructionMessage: function (message) {
         .setDescription(`${description}`)
         .setImage(message.attachments.values().next().value.url)
         .setColor(Number(`${message.guild.id.substring(0,7)}`))
-        .setFooter({text: `User ID: ${message.author.id}`})
         return exampleEmbed
     }
     else if (message.stickers.size >= 1) {
@@ -52,7 +50,6 @@ embedConstructionMessage: function (message) {
         .setDescription(`${description}`)
         .setImage(message.stickers.values().next().value.url)
         .setColor(Number(`${message.guild.id.substring(0,7)}`))
-        .setFooter({text: `User ID: ${message.author.id}`})
         return exampleEmbed
     }
 },
@@ -63,6 +60,26 @@ embedConstructionSimple: function (item, description) {
 	.setColor('#f5f625')
 	.setTitle(item)
 	.setURL(`https://dungeonquestroblox.fandom.com/wiki/${urlthing}`)
+    .setDescription(`${description}`)
+    .setThumbnail (data[item].imagelink)
+	.setTimestamp()
+	.setFooter({ text: 'DQ Wiki Bot',});
+    return exampleEmbed
+},
+embedConstructionTrivia: function (difficulty, description) {
+    const exampleEmbed = new EmbedBuilder()
+	.setColor('#f5f625')
+	.setTitle("Trivia Question:" + difficulty)
+    .setDescription(`${description}`)
+	.setTimestamp()
+	.setFooter({ text: 'DQ Wiki Bot',});
+    return exampleEmbed
+},
+embedConstructionTriviaImage: function (item, description, color) {
+    const regex = / /gi
+    const exampleEmbed = new EmbedBuilder()
+	.setColor(color)
+	.setTitle("Guess the Item")
     .setDescription(`${description}`)
     .setThumbnail (data[item].imagelink)
 	.setTimestamp()
@@ -116,6 +133,10 @@ color: function (expression) {
     }
     return color;
 },
+randomtier: function (){
+    let tiers = ['tier1', 'tier2', 'tier3', 'tier4'];
+    return tiers[Math.floor(Math.random()*tiers.length)];
+},
 autoCorrect: function (string) {
     let dictionary = Object.keys(data);
     let words = (string.split(" ")).join('');
@@ -150,5 +171,38 @@ row: new ActionRowBuilder()
         .setLabel('Purple')
         .setEmoji('🟣')
         .setStyle(ButtonStyle.Secondary),
+),
+choices: function (correctanswer, option1, option2, option3) {
+    let array = [[correctanswer, 'correct'],[option1, 'option1'],[option2, 'option2'],[option3, 'option3']]
+    console.log(array)
+    function dog () {
+        let index = Math.floor(Math.random()*array.length)
+        return array.splice(index, 1)
+    }
+    let [choice1, choice2, choice3, choice4] = [dog()[0], dog()[0], dog()[0], dog()[0]]
+return new ActionRowBuilder()
+.addComponents(
+    new ButtonBuilder()
+        .setCustomId(choice1[1])
+        .setLabel(choice1[0])
+        .setStyle(ButtonStyle.Secondary),
 )
+.addComponents(
+    new ButtonBuilder()
+        .setCustomId(choice2[1])
+        .setLabel(choice2[0])
+        .setStyle(ButtonStyle.Secondary),
+)
+.addComponents(
+    new ButtonBuilder()
+        .setCustomId(choice3[1])
+        .setLabel(choice3[0])
+        .setStyle(ButtonStyle.Secondary),
+)
+.addComponents(
+    new ButtonBuilder()
+        .setCustomId(choice4[1])
+        .setLabel(choice4[0])
+        .setStyle(ButtonStyle.Secondary),
+)},
 }
