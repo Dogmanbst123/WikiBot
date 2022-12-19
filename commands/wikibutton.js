@@ -3,7 +3,7 @@ const data = require('../data.json')
 const ats = require('../functions.js')
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('wikibutton')
+		.setName('wiki')
 		.setDescription('Get wiki info')
 		.addStringOption(option => option.setName('item')
         .setRequired(true)
