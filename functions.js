@@ -66,20 +66,10 @@ embedConstructionSimple: function (item, description) {
 	.setFooter({ text: 'DQ Wiki Bot',});
     return exampleEmbed
 },
-embedConstructionTrivia: function (difficulty, description) {
-    const exampleEmbed = new EmbedBuilder()
-	.setColor('#f5f625')
-	.setTitle("Trivia Question:" + difficulty)
-    .setDescription(`${description}`)
-	.setTimestamp()
-	.setFooter({ text: 'DQ Wiki Bot',});
-    return exampleEmbed
-},
-embedConstructionTriviaImage: function (item, description, color) {
-    const regex = / /gi
+embedConstructionTriviaImage: function (item, description, color, title) {
     const exampleEmbed = new EmbedBuilder()
 	.setColor(color)
-	.setTitle("Guess the Item")
+	.setTitle(title)
     .setDescription(`${description}`)
     .setThumbnail (data[item].imagelink)
 	.setTimestamp()
@@ -174,7 +164,6 @@ row: new ActionRowBuilder()
 ),
 choices: function (correctanswer, option1, option2, option3) {
     let array = [[correctanswer, 'correct'],[option1, 'option1'],[option2, 'option2'],[option3, 'option3']]
-    console.log(array)
     function dog () {
         let index = Math.floor(Math.random()*array.length)
         return array.splice(index, 1)
@@ -203,6 +192,46 @@ return new ActionRowBuilder()
     new ButtonBuilder()
         .setCustomId(choice4[1])
         .setLabel(choice4[0])
+        .setStyle(ButtonStyle.Secondary),
+)},
+choicesLevelReq: function (num, item) {
+    let position = Math.floor(Math.random() * 4)
+    let pos = position
+    num = Number(num)
+    let numbers = [];
+    for (let i=0; i < position + 1; i++){
+        numbers[position-i] = [(num - i*5).toString(), (num - i*5).toString()]
+    }
+    let j = 1
+    while (pos < 3){
+        pos = pos + 1
+        j = j + 1
+        numbers[pos] = [(num + j*5).toString(), (num + j*5).toString()]
+    }
+    numbers[position] = [num.toString(), "correct"]
+return new ActionRowBuilder()
+.addComponents(
+    new ButtonBuilder()
+        .setCustomId(numbers[0][1])
+        .setLabel(numbers[0][0])
+        .setStyle(ButtonStyle.Secondary),
+)
+.addComponents(
+    new ButtonBuilder()
+        .setCustomId(numbers[1][1])
+        .setLabel(numbers[1][0])
+        .setStyle(ButtonStyle.Secondary),
+)
+.addComponents(
+    new ButtonBuilder()
+        .setCustomId(numbers[2][1])
+        .setLabel(numbers[2][0])
+        .setStyle(ButtonStyle.Secondary),
+)
+.addComponents(
+    new ButtonBuilder()
+        .setCustomId(numbers[3][1])
+        .setLabel(numbers[3][0])
         .setStyle(ButtonStyle.Secondary),
 )},
 }

@@ -1,16 +1,13 @@
 const { SlashCommandBuilder } = require('discord.js');
 const data = require('../data.json')
 const ats = require('../functions.js')
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-const autocorrect = require('autocorrect')()
-
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('wikibutton')
 		.setDescription('Get wiki info')
 		.addStringOption(option => option.setName('item')
         .setRequired(true)
-        .setDescription('The item (weapon/armor/spell) you want info on. (Ex: Riptide Guardian Helmet')),
+        .setDescription('The item you want info on. (Ex: Riptide Guardian Helmet) [Check actual wiki for Boss Raids]')),
 	async execute(interaction) {
 		let itemRaw = interaction.options.getString('item');
         let item = ats.capitalizeFirstLetter(itemRaw)
