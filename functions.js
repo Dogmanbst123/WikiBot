@@ -66,6 +66,15 @@ embedConstructionSimple: function (item, description) {
 	.setFooter({ text: 'DQ Wiki Bot',});
     return exampleEmbed
 },
+embedConstruction: function (title, description, color) {
+    const exampleEmbed = new EmbedBuilder()
+    .setColor(color)
+	.setTitle(title)
+    .setDescription(`${description}`)
+	.setTimestamp()
+	.setFooter({ text: 'DQ Wiki Bot',});
+    return exampleEmbed
+},
 embedConstructionTriviaImage: function (item, description, color, title) {
     const exampleEmbed = new EmbedBuilder()
 	.setColor(color)
@@ -162,6 +171,21 @@ row: new ActionRowBuilder()
         .setEmoji('🟣')
         .setStyle(ButtonStyle.Secondary),
 ),
+challengerow: new ActionRowBuilder()
+.addComponents(
+    new ButtonBuilder()
+        .setCustomId('yes')
+        .setLabel('Yes')
+        .setEmoji('✅')
+        .setStyle(ButtonStyle.Secondary),
+)
+.addComponents(
+    new ButtonBuilder()
+        .setCustomId('no')
+        .setLabel('No')
+        .setEmoji('❌')
+        .setStyle(ButtonStyle.Secondary),
+),
 choices: function (correctanswer, option1, option2, option3) {
     let array = [[correctanswer, 'correct'],[option1, 'option1'],[option2, 'option2'],[option3, 'option3']]
     function dog () {
@@ -209,6 +233,46 @@ choicesLevelReq: function (num, item) {
         numbers[pos] = [(num + j*5).toString(), (num + j*5).toString()]
     }
     numbers[position] = [num.toString(), "correct"]
+return new ActionRowBuilder()
+.addComponents(
+    new ButtonBuilder()
+        .setCustomId(numbers[0][1])
+        .setLabel(numbers[0][0])
+        .setStyle(ButtonStyle.Secondary),
+)
+.addComponents(
+    new ButtonBuilder()
+        .setCustomId(numbers[1][1])
+        .setLabel(numbers[1][0])
+        .setStyle(ButtonStyle.Secondary),
+)
+.addComponents(
+    new ButtonBuilder()
+        .setCustomId(numbers[2][1])
+        .setLabel(numbers[2][0])
+        .setStyle(ButtonStyle.Secondary),
+)
+.addComponents(
+    new ButtonBuilder()
+        .setCustomId(numbers[3][1])
+        .setLabel(numbers[3][0])
+        .setStyle(ButtonStyle.Secondary),
+)},
+choicesSellPrice: function (num, item) {
+    let position = Math.floor(Math.random() * 4)
+    let pos = position
+    num = Number(num)
+    let numbers = [];
+    for (let i=0; i < position + 1; i++){
+        numbers[position-i] = [(num - i*(0.20*num)).toLocaleString(), (num - i*(0.20*num)).toLocaleString()]
+    }
+    let j = 1
+    while (pos < 3){
+        pos = pos + 1
+        j = j + 1
+        numbers[pos] = [(num + j*(0.20*num)).toLocaleString(), (num + j*(0.20*num)).toLocaleString()]
+    }
+    numbers[position] = [num.toLocaleString(), "correct"]
 return new ActionRowBuilder()
 .addComponents(
     new ButtonBuilder()

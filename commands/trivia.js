@@ -10,15 +10,21 @@ module.exports = {
         .addChoices(
             { name: 'Easy', value: 'easy' },
             { name: 'Medium', value: 'medium' },
+            { name: 'Hard', value: 'hard' },
         )),
 	async execute(interaction) {
         let difficulty = interaction.options.getString('difficulty');
         if (!difficulty) {
-            difficulty = ["easy", "medium"][Math.floor(Math.random()*2)]
+            difficulty = ["easy", "medium", "medium","easy", "medium", "easy", "hard"][Math.floor(Math.random()*7)]
         }
         let allItems = (Object.keys(data))
         let item = allItems[Math.floor(Math.random()*allItems.length)]
-        if (difficulty == 'medium'){
+        if (difficulty == 'hard'){
+            let itemEmbed = ats.embedConstructionTriviaImage(item, `What is the base sell price of ${item}`, '#f5f625', "Find the sell price - Hard")
+            let row = ats.choicesSellPrice((data[item].sellPrice).toString(), item)
+            interaction.reply({content: item, embeds: [itemEmbed], components: [row]});
+        }
+        else if (difficulty == 'medium'){
             let itemEmbed = ats.embedConstructionTriviaImage(item, `What level requirement does ${item} have`, '#f5f625', "Find the level req - Medium")
             let row = ats.choicesLevelReq((data[item].levelReq).toString(), item)
             interaction.reply({content: item, embeds: [itemEmbed], components: [row]});
@@ -49,7 +55,7 @@ module.exports = {
             else {element.data.style = 2
                 element.data.disabled = true}
         })
-        if (Number(answer))
+        if (Number(answer.substring(0,1)))
             item = buttonClick.message.content
         if (buttonClick.component.label == answer) {
             let itemEmbed = ats.embedConstructionTriviaImage(item, `${description} \n-----\n Your choice: ${buttonClick.component.label} \n Correct Answer: ${buttonClick.component.label} \n Status: Correct ✅`, '#00d26a', title)
