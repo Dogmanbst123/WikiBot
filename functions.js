@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder } = require('discord.js');
 const data = require('./data.json')
 const autocorrect = require('autocorrect')({words: Object.keys(data)});
 const badwords = ["heck", "nigger", "bitch", "cum", "dick", "d1ck", " ass ", "fuck", "b1tch", "asshat", "asshole"]
@@ -83,6 +83,16 @@ embedConstructionTriviaImage: function (item, description, color, title) {
     .setThumbnail (data[item].imagelink)
 	.setTimestamp()
 	.setFooter({ text: 'DQ Wiki Bot',});
+    return exampleEmbed
+},
+embedConstructionHangman: function (title, description, color, thumbnail, footer) {
+    const exampleEmbed = new EmbedBuilder()
+	.setColor(color)
+	.setTitle(title)
+    .setDescription(`${description}`)
+	.setTimestamp()
+    .setThumbnail(thumbnail)
+	.setFooter({text: footer});
     return exampleEmbed
 },
 capitalizeFirstLetter: function (string){
@@ -258,6 +268,127 @@ return new ActionRowBuilder()
         .setLabel(numbers[3][0])
         .setStyle(ButtonStyle.Secondary),
 )},
+Hangman: function (item) {
+    const row = new ActionRowBuilder()
+    .addComponents(
+        new StringSelectMenuBuilder()
+            .setCustomId(`${item}`)
+            .setPlaceholder('a-m')
+            .addOptions(
+                {
+                    label: 'a',
+                    value: 'a'
+                },
+                {
+                    label: 'b',
+                    value: 'b'
+                },
+                {
+                    label: 'c',
+                    value: 'c'
+                },
+                {
+                    label: 'd',
+                    value: 'd'
+                },
+                {
+                    label: 'e',
+                    value: 'e'
+                },
+                {
+                    label: 'f',
+                    value: 'f'
+                },
+                {
+                    label: 'g',
+                    value: 'g'
+                },
+                {
+                    label: 'h',
+                    value: 'h'
+                },
+                {
+                    label: 'i',
+                    value: 'i'
+                },
+                {
+                    label: 'j',
+                    value: 'j'
+                },
+                {
+                    label: 'k',
+                    value: 'k'
+                },
+                {
+                    label: 'l',
+                    value: 'l'
+                },
+                {
+                    label: 'm',
+                    value: 'm'
+                },
+            ));
+    const row2 = new ActionRowBuilder()
+            .addComponents( new StringSelectMenuBuilder()
+            .setCustomId('select')
+            .setPlaceholder('n-z')
+            .addOptions(
+                {
+                    label: 'n',
+                    value: 'n'
+                },
+                {
+                    label: 'o',
+                    value: 'o'
+                },
+                {
+                    label: 'p',
+                    value: 'p'
+                },
+                {
+                    label: 'q',
+                    value: 'q'
+                },
+                {
+                    label: 'r',
+                    value: 'r'
+                },
+                {
+                    label: 's',
+                    value: 's'
+                },
+                {
+                    label: 't',
+                    value: 't'
+                },
+                {
+                    label: 'u',
+                    value: 'u'
+                },
+                {
+                    label: 'v',
+                    value: 'v'
+                },
+                {
+                    label: 'w',
+                    value: 'w'
+                },
+                {
+                    label: 'x',
+                    value: 'x'
+                },
+                {
+                    label: 'y',
+                    value: 'y'
+                },
+                {
+                    label: 'z',
+                    value: 'z'
+                },
+            ),
+    );
+    return [row, row2]; 
+},
 choicesSellPrice: function (num, item) {
     let position = Math.floor(Math.random() * 4)
     let pos = position
