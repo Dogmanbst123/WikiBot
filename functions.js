@@ -72,7 +72,8 @@ embedConstruction: function (title, description, color) {
 	.setTitle(title)
     .setDescription(`${description}`)
 	.setTimestamp()
-	.setFooter({ text: 'DQ Wiki Bot',});
+	.setFooter({ text: 'DQ Wiki Bot',})
+    .setThumbnail('https://cdn.discordapp.com/icons/645924664996266004/17c0f70bf9abb098a62b0b2260a207d7.webp?size=240');
     return exampleEmbed
 },
 embedConstructionTriviaImage: function (item, description, color, title) {
@@ -429,4 +430,14 @@ return new ActionRowBuilder()
         .setLabel(numbers[3][0])
         .setStyle(ButtonStyle.Secondary),
 )},
+truncate: function (num) {
+    if (num < 1e3) {
+        return num.toLocaleString();
+    }
+    var units = ["", "K", "M", "B", "T", "Q", "Qi", "sx", "Sp", "O", "N", "de"];
+    var index = Math.floor((num.toFixed().length - 1) / 3);
+    var sig = (+(num + 'e-' + index * 3)).toFixed(2);
+    var unit = units[index];
+    return sig + unit;
+}
 }
