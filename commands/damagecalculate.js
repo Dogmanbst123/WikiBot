@@ -21,14 +21,14 @@ module.exports = {
     .addChoices(
         { name: "Blade Barrage / God Spear / Amethyst Beams / Jade Rain", value: "133" },
         { name: "Jade Roller", value: "126" },
-        { name: "Solar Beam (2 ticks)", value: "126 / 2" },
+        { name: "Solar Beam (2 ticks)", value: "63" },
         { name: "Flame Shuriken / Geyser", value: "119" },
-        { name: "Gale Barrage (3 ticks)", value: "119 / 3" },
-        { name: "Soul Drain (6 ticks)", value: "119 / 6" },
+        { name: "Gale Barrage (3 ticks)", value: "39.667" },
+        { name: "Soul Drain (6 ticks)", value: "39.667" },
         { name: "Frost Cone / Flame Strike", value: "112" },
         { name: "Wind Blast / Crystalline Cannon / Lightning Burst / Agony Orbs", value: "107" },
         { name: "Piercing Roots", value: "100" },
-        { name: "Fungal Poison (6 ticks)", value: "100 / 6" },
+        { name: "Fungal Poison (6 ticks)", value: "16.667" },
         { name: "Ice Crash / Ice Barrage / Aquatic Smite / Ice Spikes", value: "92" },
         { name: "Spear Strike / Water Orb", value: "86" }
     )),
