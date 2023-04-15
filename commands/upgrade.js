@@ -24,7 +24,7 @@ module.exports = {
         else{
             let potential = power;
             let upgrades = currentUpgrades;
-            while (potential < 200 && upgrades < total) {
+            while (potential < 200 && upgrades < totalUpgrades) {
                 if (potential < 20) {
                     potential++;
                 } else {
@@ -32,7 +32,7 @@ module.exports = {
                 }
                 upgrades++;
             }
-            potential += (total - upgrades) * 10;
+            potential += (totalUpgrades - upgrades) * 10;
             text = `💰Cost ${cost} 💰 \n ⚔️ Potential ${potential} ⚔️`
         }
         embed = ats.embedConstruction("Upgrade Calculation", text, '#f5f625')
