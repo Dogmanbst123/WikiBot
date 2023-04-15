@@ -19,7 +19,7 @@ module.exports = {
         let totalUpgrades = interaction.options.getInteger('totalupgrades');
         let cost = (ats.calculateUpgradeCost(currentUpgrades, totalUpgrades)).toLocaleString()
         if (power == -1) {
-            text = `💰 Cost${cost} 💰`
+            text = `💰 Cost💰 \n ${cost} `
         }
         else{
             let potential = power;
@@ -33,7 +33,7 @@ module.exports = {
                 upgrades++;
             }
             potential += (totalUpgrades - upgrades) * 10;
-            text = `💰Cost ${cost} 💰 \n ⚔️ Potential ${potential} ⚔️`
+            text = `💰 Cost 💰\n ${cost}  \n ⚔️ Potential ⚔️ \n ${potential} `
         }
         embed = ats.embedConstruction("Upgrade Calculation", text, '#f5f625')
         interaction.reply({embeds: [embed]}); 
