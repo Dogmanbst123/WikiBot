@@ -33,7 +33,7 @@ module.exports = {
                 upgrades++;
             }
             potential += (totalUpgrades - upgrades) * 10;
-            text = `💰 Cost 💰\n ${cost}  \n ⚔️ Potential ⚔️ \n ${potential} `
+            text = `💰 Cost 💰\n ${cost}  \n ⚔️ Potential ⚔️ \n ${potential.toLocaleString()} `
         }
         embed = ats.embedConstruction("Upgrade Calculation", text, '#f5f625')
         interaction.reply({embeds: [embed]}); 
