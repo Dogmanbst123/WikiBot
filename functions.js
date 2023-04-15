@@ -439,5 +439,27 @@ truncate: function (num) {
     var sig = (+(num + 'e-' + index * 3)).toFixed(2);
     var unit = units[index];
     return sig + unit;
+},
+calculateUpgradeCost: function (current, total) {
+    var cost = 0;
+    if (current < 24) {
+        if (current === 0 && total > 0) cost = 100;
+        var c = 100;
+        for (var i = 1; i < 24 && i < total; i++) {
+            c = c * 1.06 + 50;
+            if (i >= current) cost += Math.floor(c);
+        }
+    }
+    var s = current < 24 ? 24
+        : current > 466 ? 466
+        : current;
+    var e = total < 24 ? 24
+        : total > 466 ? 466
+        : total;
+    cost += (e - s) * (110 * (e + s) - 2445);
+    s = current < 466 ? 466 : current;
+    e = total < 466 ? 466 : total;
+    cost += (e - s) * 100000;
+    return cost;
 }
 }
