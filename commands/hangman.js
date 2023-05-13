@@ -31,7 +31,7 @@ module.exports = {
         let currentProgressArray = currentProgress.split('')
         let condition = true;
         let message = menuOption.message.embeds[0].data.description
-        console.log(guess)
+        console.log("P")
         for (i=0; i<itemArray.length; i++) {
             if (itemArray[i] == guess){
                 currentProgressArray[i] = guess
